@@ -44,5 +44,4 @@ def monthly_challenge(request, month: str):
         msg_html = f"<h1>{msg}</h1>"
         return HttpResponse(msg_html)
     except Exception as e:
-        print(e)
-        return HttpResponseNotFound('This month is not supported!')
+        return HttpResponseNotFound(f'This month is not supported!\n{e}')
