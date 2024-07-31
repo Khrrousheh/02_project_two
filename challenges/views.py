@@ -1,6 +1,8 @@
 from django.http import HttpResponse, HttpResponseNotFound, \
     HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
+from django.shortcuts import render
 
 challenges_map = {
     'january': "Reading Challenge",
@@ -23,7 +25,7 @@ def index(request):
     for idx, name in enumerate(months):
         redirect_month = months[idx]
         redirect_path = reverse('month-challenge', args=[redirect_month])
-        msg_body += f"\n<li><a href={redirect_path}>name</a></li>"
+        msg_body += f"\n<li><a href={redirect_path}>{name}</a></li>"
     msg_body += '</ul>'
     return HttpResponse(msg_body)
 
@@ -40,8 +42,10 @@ def monthly_challenge_by_number(request, month: int):
 
 def monthly_challenge(request, month: str):
     try:
-        msg = challenges_map.get(month.lower())
-        msg_html = f"<h1>{msg}</h1>"
-        return HttpResponse(msg_html)
+        # msg = challenges_map.get(month.lower())
+        # msg_html = f"<h1>{msg}</h1>"
+        # msg_html = render_to_string("challenges\challenge.html")
+        # return HttpResponse(msg_html)
+        return render(request, "challenges\challenge.html")
     except Exception as e:
         return HttpResponseNotFound(f'This month is not supported!\n{e}')
