@@ -18,13 +18,7 @@ challenges_map = {
 
 
 def index(request):
-    # msg_body = '<ul>'
     months = list(challenges_map.keys())
-    # for idx, name in enumerate(months):
-    #     redirect_month = months[idx]
-    #     redirect_path = reverse('month-challenge', args=[redirect_month])
-    #     msg_body += f"\n<li><a href={redirect_path}>{name}</a></li>"
-    # msg_body += '</ul>'
     return render(
         request,
         "challenges/index.html",
