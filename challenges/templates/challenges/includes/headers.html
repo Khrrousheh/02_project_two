@@ -1,0 +1,8 @@
+<header>
+    {% if active_page != "index" %}
+    <nav><a href="{% url 'index' %}">All Challenges</a></nav>
+    <samp>All Challenges/{{ month }}</samp>
+    {% else %}
+    <h3>view all challenges</h3>
+    {% endif %}
+</header>
